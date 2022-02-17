@@ -1,0 +1,104 @@
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+      <title>The City of Love</title>
+  
+      <style>
+        html,
+        body,
+        #viewDiv {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+          width: 100%;
+        }
+      </style>
+  
+      <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+      <script src="https://js.arcgis.com/4.22/"></script>
+  
+      <script>
+        require(["esri/config","esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], 
+                function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+  
+          esriConfig.apiKey = "AAPK6ad93d1de28a400290ae8f51111a56e4-LiIJY2BvYHw_N3EvbRJfHlt3KMymsr9p9lLIAsK0i4-w3uGZW1PwALhfqk2EAwg";
+  
+          const map = new Map({
+            basemap: "arcgis-topographic" // Basemap layer service
+          });
+  
+          const view = new MapView({
+            map: map,
+            center: [2.3344675, 48.8615463], // Longitude, latitude
+            zoom: 12, // Zoom level
+            container: "viewDiv" // Div element
+          });
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+          const polyline = {
+      type: "polyline",
+      paths: [
+          [2.3044675, 48.8615463], //Longitude, latitude
+          [2.3644675, 48.8945463], //Longitude, latitude
+          [2.3624675, 48.8915463],
+          [2.3620000, 48.8931899],
+         
+      ]
+   };
+   const simpleLineSymbol = {
+      type: "simple-line",
+      color: [0,0,0],
+      width: 2
+   };
+      const polylineGraphic = new Graphic({
+      geometry: polyline,
+      symbol: simpleLineSymbol
+   });
+   graphicsLayer.add(polylineGraphic);
+          const polygon = {
+      type: "polygon",
+      rings: [
+          [2.3344675, 48.8615463],//Longitude, latitude
+          [2.3100675, 48.8815463],//Longitude, latitude
+          [2.3144675, 48.8855463],
+          [2.3214675, 48.8855463],//Longitude, latitude
+          [2.3344675, 48.8815463],//Longitude, latitude
+          [2.3474675, 48.8855463],//Longitude, latitude
+          [2.3544675, 48.8855463],
+          [2.3588675, 48.8815463],
+      ]
+   };
+  
+   const simpleFillSymbol = {
+      type: "simple-fill",
+      color: [255, 10, 90, 0.5],  
+      outline: {
+          color: [0, 0, 0],
+          width: 1
+      }
+   };
+      const popupTemplate = {
+      title: "{Name}",
+      content: "{Description}"
+   }
+   const attributes = {
+      Name: "Visit Sometime?",
+      Description: "The City of Love, Paris ❤"
+   }    
+      const polygonGraphic = new Graphic({
+      geometry: polygon,
+      symbol: simpleFillSymbol,
+      attributes: attributes,
+      popupTemplate: popupTemplate
+  
+   });
+   graphicsLayer.add(polygonGraphic);
+        });
+      </script>
+  
+    </head>
+    <body>
+      <div id="viewDiv"></div>
+    </body>
+  </html>
