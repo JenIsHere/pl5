@@ -14,3 +14,5 @@ Token : RxhgkYl60BDj2X0jeKK-vdEuWa-vZkVo4SBkK-to2pgQrZmH_2-TMHi6riS9f6yum3LvtnFn
 Display Map : https://jenishere.github.io/pl5/displaymap.html
 
 Find Location : https://jenishere.github.io/pl5/findlocation.html
+
+Story : https://jenishere.github.io/pl5/story.html
